@@ -1,4 +1,4 @@
-import constants
+from Assets.Code import constants
 
 
 def is_colliding(player_x, player_y, colliders, to_execute):
