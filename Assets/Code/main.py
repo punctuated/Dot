@@ -3,7 +3,7 @@ import collision
 
 main = engine.Main()
 
-tile_width, tile_height = 48, 48
+tile_width, tile_height = 40, 40
 
 lvl_width, lvl_height = 10, 6
 
