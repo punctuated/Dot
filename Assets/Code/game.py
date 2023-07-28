@@ -38,7 +38,6 @@ def loop():
     if player_y >= lvl_height:
         player_y = lvl_height - 1
 
-
     objects.draw_object(
         window,
         '../Images/player.png',
