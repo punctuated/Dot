@@ -11,7 +11,7 @@ walls = [(1, 1), (1, 2), (3, 0), (3, 1)]
 main = engine.Main()
 
 
-window = main.window.new_window('Level 1', lvl_width * tile_width, lvl_height * tile_height)
+window = main.window.new_window('Level 2', lvl_width * tile_width, lvl_height * tile_height)
 
 
 def up():
