@@ -157,4 +157,3 @@ def loop():
         )
 
     collision.is_colliding(player_x, player_y, [(goal_x, goal_y)], lambda: main.quit(window))
-
