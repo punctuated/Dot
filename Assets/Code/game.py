@@ -1,6 +1,8 @@
 import fusionengine as engine
 from Assets.Code import collision, objects
 
+count = 0
+
 lvl_width, lvl_height = 3, 1
 tile_width, tile_height = 128, 128
 player_x, player_y = 0, 0
@@ -11,17 +13,29 @@ main = engine.Main()
 lvl_1 = main.window.new_window('Level 1', lvl_width * tile_width, lvl_height * tile_height)
 
 while main.window.running(lvl_1):
-    if main.event.key_down(main.keys.KEY_w, lvl_1):
-        player_y -= 1
+    main.draw.draw_rect(lvl_1, 0, 0, lvl_width * tile_width, lvl_height * tile_height, (0, 0, 0, 255))
+    if main.event.key_down(main.keys.KEY_w):
+        count += 1
+        if count == 1:
+            player_y -= 1
 
-    if main.event.key_down(main.keys.KEY_a, lvl_1):
-        player_x -= 1
+    elif main.event.key_down(main.keys.KEY_a):
+        count += 1
+        if count == 1:
+            player_x -= 1
 
-    if main.event.key_down(main.keys.KEY_s, lvl_1):
-        player_y += 1
+    elif main.event.key_down(main.keys.KEY_s):
+        count += 1
+        if count == 1:
+            player_y += 1
 
-    if main.event.key_down(main.keys.KEY_d, lvl_1):
-        player_x += 1
+    elif main.event.key_down(main.keys.KEY_d):
+        count += 1
+        if count == 1:
+            player_x += 1
+
+    else:
+        count = 0
 
     if player_x < 0:
         player_x = 0
@@ -55,7 +69,6 @@ while main.window.running(lvl_1):
         main
     )
 
-    collision.is_colliding(player_x, player_y, [(goal_x, goal_y)], lambda: main.quit(lvl_1))
     if player_x == goal_x and player_y == goal_y:
         break
 
@@ -93,21 +106,29 @@ def right():
 
 
 while main.window.running(lvl_2):
-    if main.event.key_down(main.keys.KEY_w, lvl_2):
-        player_y -= 1
-        collision.is_colliding(player_x, player_y, walls, down)
+    main.draw.draw_rect(lvl_2, 0, 0, lvl_width * tile_width, lvl_height * tile_height, (0, 0, 0, 255))
+    if main.event.key_down(main.keys.KEY_w):
+        count += 1
+        if count == 1:
+            player_y -= 1
 
-    if main.event.key_down(main.keys.KEY_a, lvl_2):
-        player_x -= 1
-        collision.is_colliding(player_x, player_y, walls, right)
+    elif main.event.key_down(main.keys.KEY_a):
+        count += 1
+        if count == 1:
+            player_x -= 1
 
-    if main.event.key_down(main.keys.KEY_s, lvl_2):
-        player_y += 1
-        collision.is_colliding(player_x, player_y, walls, up)
+    elif main.event.key_down(main.keys.KEY_s):
+        count += 1
+        if count == 1:
+            player_y += 1
 
-    if main.event.key_down(main.keys.KEY_d, lvl_2):
-        player_x += 1
-        collision.is_colliding(player_x, player_y, walls, left)
+    elif main.event.key_down(main.keys.KEY_d):
+        count += 1
+        if count == 1:
+            player_x += 1
+
+    else:
+        count = 0
 
     if player_x < 0:
         player_x = 0
@@ -152,6 +173,5 @@ while main.window.running(lvl_2):
             main
         )
 
-    collision.is_colliding(player_x, player_y, [(goal_x, goal_y)], lambda: main.quit(lvl_1))
     if player_x == goal_x and player_y == goal_y:
         break
