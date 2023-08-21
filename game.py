@@ -1,5 +1,5 @@
 import fusionengine as engine
-from Assets.Code import collision, objects
+from Assets.Code import objects
 
 count = 0
 
@@ -11,6 +11,7 @@ goal_x, goal_y = 2, 0
 main = engine.Main()
 
 lvl_1 = main.window.new_window('Level 1', lvl_width * tile_width, lvl_height * tile_height)
+main.window.change_icon('Assets/Images/player.png')
 
 while main.window.running(lvl_1):
     main.draw.draw_rect(lvl_1, 0, 0, lvl_width * tile_width, lvl_height * tile_height, (0, 0, 0, 255))
@@ -51,7 +52,7 @@ while main.window.running(lvl_1):
 
     objects.draw_object(
         lvl_1,
-        '../Images/player.png',
+        'Assets/Images/player.png',
         player_x * tile_width,
         player_y * tile_height,
         tile_width,
@@ -61,7 +62,7 @@ while main.window.running(lvl_1):
 
     objects.draw_object(
         lvl_1,
-        '../Images/goal.png',
+        'Assets/Images/goal.png',
         goal_x * tile_width,
         goal_y * tile_height,
         tile_width,
@@ -83,6 +84,7 @@ main = engine.Main()
 
 
 lvl_2 = main.window.new_window('Level 2', lvl_width * tile_width, lvl_height * tile_height)
+main.window.change_icon('Assets/Images/player.png')
 
 
 def up():
@@ -144,7 +146,7 @@ while main.window.running(lvl_2):
 
     objects.draw_object(
         lvl_2,
-        '../Images/player.png',
+        'Assets/Images/player.png',
         player_x * tile_width,
         player_y * tile_height,
         tile_width,
@@ -154,7 +156,7 @@ while main.window.running(lvl_2):
 
     objects.draw_object(
         lvl_2,
-        '../Images/goal.png',
+        'Assets/Images/goal.png',
         goal_x * tile_width,
         goal_y * tile_height,
         tile_width,
@@ -165,7 +167,7 @@ while main.window.running(lvl_2):
     for wall in walls:
         objects.draw_object(
             lvl_2,
-            '../Images/wall.png',
+            'Assets/Images/wall.png',
             wall[0] * tile_width,
             wall[1] * tile_height,
             tile_width,
