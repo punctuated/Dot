@@ -109,25 +109,34 @@ def right():
 
 while main.window.running(lvl_2):
     main.draw.draw_rect(lvl_2, 0, 0, lvl_width * tile_width, lvl_height * tile_height, (0, 0, 0, 255))
+    X, Y = player_x, player_y
     if main.event.key_down(main.keys.KEY_w):
         count += 1
         if count == 1:
             player_y -= 1
+            if (player_x, player_y) in walls:
+                player_y = Y
 
     elif main.event.key_down(main.keys.KEY_a):
         count += 1
         if count == 1:
             player_x -= 1
+            if (player_x, player_y) in walls:
+                player_x = X
 
     elif main.event.key_down(main.keys.KEY_s):
         count += 1
         if count == 1:
             player_y += 1
+            if (player_x, player_y) in walls:
+                player_y = Y
 
     elif main.event.key_down(main.keys.KEY_d):
         count += 1
         if count == 1:
             player_x += 1
+            if (player_x, player_y) in walls:
+                player_x = X
 
     else:
         count = 0
