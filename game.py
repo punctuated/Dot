@@ -9,7 +9,7 @@ tile_width, tile_height = 128, 128
 player_x, player_y = 0, 0
 goal_x, goal_y = 2, 0
 
-tb, to = False, False  # whether blue and orange are triggered
+tb, to = False, False  # if blue and orange are triggered
 blue_t, orange_t = [], []  # blue and orange triggers
 blue_w, orange_w = [], []  # blue and orange walls
 
