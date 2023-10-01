@@ -1,3 +1,4 @@
+# WARNING: Please use the latest GitHub release of fusion-engine. It is highly likely that it won't work otherwise.
 # Dot
 A game created with Fusion Engine.
 <details>
