@@ -1,5 +1,5 @@
 import fusionengine as engine
-from fusionengine.files.window import _CustomRenderer as winobj
+from fusionengine.files.window import Window as winobj
 from Assets.Code import objects
 
 count = 0
@@ -8,7 +8,7 @@ count = 0
 def movement_check():
     global player_x, player_y, px_init, py_init, holes, tb, to, count
     prev_x, prev_y = player_x, player_y
-    if main.event.key_down(main.keys.KEY_w):
+    if engine.key_down(engine.KEY_w):
         count += 1
         if count == 1:
             player_y -= 1
@@ -31,7 +31,7 @@ def movement_check():
                 player_x, player_y = px_init, py_init;
                 tb, to = False;
 
-    elif main.event.key_down(main.keys.KEY_a):
+    elif engine.key_down(engine.KEY_a):
         count += 1
         if count == 1:
             player_x -= 1
@@ -54,7 +54,7 @@ def movement_check():
                 player_x, player_y = px_init, py_init;
                 tb, to = False;
 
-    elif main.event.key_down(main.keys.KEY_s):
+    elif engine.key_down(engine.KEY_s):
         count += 1
         if count == 1:
             player_y += 1
@@ -77,7 +77,7 @@ def movement_check():
                 player_x, player_y = px_init, py_init;
                 tb, to = False;
 
-    elif main.event.key_down(main.keys.KEY_d):
+    elif engine.key_down(engine.KEY_d):
         count += 1
         if count == 1:
             player_x += 1
@@ -123,8 +123,7 @@ def draw_all(window: winobj):
         goal_x * tile_width,
         goal_y * tile_height,
         tile_width,
-        tile_height,
-        main
+        tile_height
     )
 
     for wall in walls:
@@ -134,8 +133,7 @@ def draw_all(window: winobj):
             wall[0] * tile_width,
             wall[1] * tile_height,
             tile_width,
-            tile_height,
-            main
+            tile_height
         )
 
     for bt in blue_t:
@@ -145,8 +143,7 @@ def draw_all(window: winobj):
             bt[0] * tile_width,
             bt[1] * tile_height,
             tile_width,
-            tile_height,
-            main
+            tile_height
         )
 
     for ot in orange_t:
@@ -156,8 +153,7 @@ def draw_all(window: winobj):
             ot[0] * tile_width,
             ot[1] * tile_height,
             tile_width,
-            tile_height,
-            main
+            tile_height
         )
 
     for bw in blue_w:
@@ -167,8 +163,7 @@ def draw_all(window: winobj):
             bw[0] * tile_width,
             bw[1] * tile_height,
             tile_width,
-            tile_height,
-            main
+            tile_height
         )
 
     for ow in orange_w:
@@ -178,8 +173,7 @@ def draw_all(window: winobj):
             ow[0] * tile_width,
             ow[1] * tile_height,
             tile_width,
-            tile_height,
-            main
+            tile_height
         )
     
     for hole in holes:
@@ -189,8 +183,7 @@ def draw_all(window: winobj):
             hole[0] * tile_width,
             hole[1] * tile_height,
             tile_width,
-            tile_height,
-            main
+            tile_height
         )
 
     objects.draw_object(
@@ -199,8 +192,7 @@ def draw_all(window: winobj):
         player_x * tile_width,
         player_y * tile_height,
         tile_width,
-        tile_height,
-        main
+        tile_height
     )
 
 # Level 1
@@ -217,15 +209,11 @@ blue_w, orange_w = [], []  # blue and orange walls
 walls = []
 holes = []
 
-main = engine.Main()
-main.window.toggle_quittable()  # Make it so that quitting is not possible by 'X' button
+lvl_1 = engine.Window('Level 1', lvl_width * tile_width, lvl_height * tile_height)
+lvl_1.change_icon('Assets/Images/player.png')
+lvl_1.toggle_quittable()  # X button cannot close
 
-lvl_1 = main.window.new_window('Level 1', lvl_width * tile_width, lvl_height * tile_height)
-main.window.change_icon('Assets/Images/player.png')
-
-while main.window.running(lvl_1):
-    main.draw.draw_rect(lvl_1, 0, 0, lvl_width * tile_width, lvl_height * tile_height, (0, 0, 0, 255))
-
+while lvl_1.running():
     movement_check()
     draw_all(lvl_1)
 
@@ -246,12 +234,11 @@ blue_w, orange_w = [], []
 holes = []
 walls = [(1, 1), (1, 2), (3, 0), (3, 1)]
 
-lvl_2 = main.window.new_window('Level 2', lvl_width * tile_width, lvl_height * tile_height)
-main.window.change_icon('Assets/Images/player.png')
+lvl_2 = engine.Window('Level 2', lvl_width * tile_width, lvl_height * tile_height)
+lvl_2.change_icon('Assets/Images/player.png')
+lvl_2.toggle_quittable()
 
-while main.window.running(lvl_2):
-    main.draw.draw_rect(lvl_2, 0, 0, lvl_width * tile_width, lvl_height * tile_height, (0, 0, 0, 255))
-
+while lvl_2.running():
     movement_check()
     draw_all(lvl_2)
 
@@ -272,12 +259,11 @@ blue_w, orange_w = [(3, 1), (4, 1), (3, 2)], []
 holes = []
 walls = []
 
-lvl_3 = main.window.new_window('Level 3', lvl_width * tile_width, lvl_height * tile_height)
-main.window.change_icon('Assets/Images/player.png')
+lvl_3 = engine.Window('Level 3', lvl_width * tile_width, lvl_height * tile_height)
+lvl_3.change_icon('Assets/Images/player.png')
+lvl_3.toggle_quittable()
 
-while main.window.running(lvl_3):
-    main.draw.draw_rect(lvl_3, 0, 0, lvl_width * tile_width, lvl_height * tile_height, (0, 0, 0, 255))
-
+while lvl_3.running():
     movement_check()
     draw_all(lvl_3)
 
@@ -292,8 +278,9 @@ player_x, player_y = 0, 0
 px_init, py_init = player_x, player_y
 goal_x, goal_y = 9, 0
 
-lvl_4 = main.window.new_window('Level 4', lvl_width * tile_width, lvl_height * tile_height)
-main.window.change_icon('Assets/Images/player.png')
+lvl_4 = engine.Window('Level 4', lvl_width * tile_width, lvl_height * tile_height)
+lvl_4.change_icon('Assets/Images/player.png')
+lvl_4.toggle_quittable()
 tb, to = False, False
 blue_t, orange_t = [(2, 5)], [(7, 0)]
 blue_w, orange_w = [(6, 0), (6, 1), (6, 2), (7, 2), (8, 2), (9, 2)], [(8, 0), (8, 1), (9, 1)]
@@ -301,9 +288,7 @@ holes = [(5, 5)]
 walls = []
 
 
-while main.window.running(lvl_4):
-    main.draw.draw_rect(lvl_3, 0, 0, lvl_width * tile_width, lvl_height * tile_height, (0, 0, 0, 255))
-
+while lvl_4.running():
     movement_check()
     draw_all(lvl_4)
 

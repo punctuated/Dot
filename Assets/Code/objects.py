@@ -1,8 +1,8 @@
 import fusionengine as engine
 
-from fusionengine.files.window import _CustomRenderer as Renderer  # NOQA
+from fusionengine.files.window import Window
 
 
-def draw_object(window: Renderer, image, x, y, width, height, main: engine.Main):
-    img = main.image.open_image(window, image, x, y, width, height)
-    main.image.draw_image(img)
+def draw_object(window: Window, image, x, y, width, height):
+    img = engine.Image(window, image, x, y, width, height)
+    img.draw()
