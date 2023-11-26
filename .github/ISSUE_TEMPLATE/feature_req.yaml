@@ -1,7 +1,7 @@
 name: Feature request
 description: Files a feature request.
 title: "[feature request] <title>"
-labels: ["bug"]
+labels: ["enhancement"]
 body:
 - type: checkboxes
   attributes:
