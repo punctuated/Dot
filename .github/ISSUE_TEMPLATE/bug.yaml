@@ -3,6 +3,13 @@ description: Files a bug report.
 title: "[bug] <title>"
 labels: ["bug"]
 body:
+- type: checkboxes
+  attributes:
+    label: Existing issues
+    description: Please search for if this issue already exists.
+    options:
+    - label: I have searched the existing issues.
+      required: true
 - type: textarea
   attributes:
     label: Current Behavio(u)r
@@ -26,3 +33,5 @@ body:
   attributes:
     label: Additional context
     description: Anything else (links, images etc.) that would improve the context.
+  validations:
+    required: false

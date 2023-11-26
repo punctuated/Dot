@@ -1,0 +1,31 @@
+name: Feature request
+description: Files a feature request.
+title: "[feature request] <title>"
+labels: ["bug"]
+body:
+- type: checkboxes
+  attributes:
+    label: Existing issues
+    description: Please search for if this issue already exists.
+    options:
+    - label: I have searched the existing issues.
+      required: true
+
+- type: textarea
+  attributes:
+    label: Feature
+    description: A concise description of the wanted feature.
+  validations:
+    required: true
+- type: textarea
+  attributes:
+    label: Implementation idea
+    description: An idea of how to implement said feature.
+  validations:
+    required: false
+- type: textarea
+  attributes:
+    label: Additional context
+    description: Anything else (links, images etc.) that would give us an idea
+  validations:
+    required: false
