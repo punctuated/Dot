@@ -1,0 +1,28 @@
+name: Bug report
+description: Files a bug report.
+title: "[bug] <title>"
+labels: ["bug"]
+body:
+- type: textarea
+  attributes:
+    label: Current Behavio(u)r
+    description: A concise description of the current behavio(u)r.
+  validations:
+    required: true
+- type: textarea
+  attributes:
+    label: Expected Behavio(u)r
+    description: A concise description of the behavio(u)r expected.
+  validations:
+    required: true
+- type: textarea
+  attributes:
+    label: To Reproduce
+    description: How to reproduce the current behavio(u)r.
+    placeholder: This happens when I go on the ... via pressing ...
+  validations:
+    required: false
+- type: textarea
+  attributes:
+    label: Additional context
+    description: Anything else (links, images etc.) that would improve the context.
