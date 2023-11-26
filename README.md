@@ -1,4 +1,4 @@
-# WARNING: This branch will no longer be recieving updates. This version uses the partially outdated v3 of Fusion Engine. If you want to play the most recent update, please install the latest version of Fusion Engine.
+WARNING: This branch will no longer be recieving updates. This version uses the partially outdated v3 of Fusion Engine. If you want to play the most recent update, please install the latest version of Fusion Engine. Any PRs to this branch will be rejected.
 # Dot
 A game created with Fusion Engine.
 <details>
