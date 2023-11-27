@@ -1,0 +1,22 @@
+name: Generic Pull Request
+description: Fİles a generic pull request.
+body:
+- type: checkboxes
+  attributes:
+    label: Testing
+    description: Please test your solution before you submit this PR.
+    options:
+    - label: I have tested this solution.
+    - required: true
+- type: input
+  attributes:
+    label: Issue satisfied
+    description: The label of the issue satisfied. If this is an improvement, leave this blank.
+  validations:
+    required: false
+- type: textbox
+  attributes:
+    label: Description
+    description: A concise description of the purpose of the code you made.
+  validations:
+    required: true
