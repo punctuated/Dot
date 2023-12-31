@@ -7,24 +7,24 @@ type winobj = engine.Window
 
 
 def movement_check():
-    global player_x, player_y, px_init, py_init, holes, tb, to, count
+    global player_x, player_y, px_init, py_init, holes, tb, to, count, last_enabled_checkpoint
     prev_x, prev_y = player_x, player_y
-    if engine.key_down(engine.KEY_w):
+    if engine.key_down(engine.KEY_w) or engine.key_down(engine.KEY_UP):
         count += 1
         if count == 1:
             player_y -= 1
 
-    elif engine.key_down(engine.KEY_a):
+    elif engine.key_down(engine.KEY_a) or engine.key_down(engine.KEY_LEFT):
         count += 1
         if count == 1:
             player_x -= 1
 
-    elif engine.key_down(engine.KEY_s):
+    elif engine.key_down(engine.KEY_s) or engine.key_down(engine.KEY_DOWN):
         count += 1
         if count == 1:
             player_y += 1
 
-    elif engine.key_down(engine.KEY_d):
+    elif engine.key_down(engine.KEY_d) or engine.key_down(engine.KEY_RIGHT):
         count += 1
         if count == 1:
             player_x += 1
@@ -34,13 +34,13 @@ def movement_check():
 
     if count == 1:
         if (player_x, player_y) in walls:
-            player_y = prev_y
+            player_x, player_y = prev_x, prev_y
 
         if (player_x, player_y) in blue_w and not tb:
-            player_y = prev_y
+            player_x, player_y = prev_x, prev_y
 
         if (player_x, player_y) in orange_w and not to:
-            player_y = prev_y
+            player_x, player_y = prev_x, prev_y
 
         if (player_x, player_y) in blue_t:
             tb = not tb
@@ -49,8 +49,8 @@ def movement_check():
             to = not to
         
         if (player_x, player_y) in holes:
-            player_x, player_y = px_init, py_init;
-            tb, to = False;
+            player_x, player_y = px_init, py_init
+            tb, to = False, False
 
         if (player_x, player_y) in checkpoints:
             px_init, py_init = player_x, player_y
