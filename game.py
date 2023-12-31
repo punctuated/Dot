@@ -1,8 +1,9 @@
 import fusionengine as engine
-from fusionengine.files.window import Window as winobj
 from Assets.Code import objects
 
 count = 0
+
+type winobj = engine.Window
 
 
 def movement_check():
@@ -12,96 +13,48 @@ def movement_check():
         count += 1
         if count == 1:
             player_y -= 1
-            if (player_x, player_y) in walls:
-                player_y = prev_y
-
-            if (player_x, player_y) in blue_w and not tb:
-                player_y = prev_y
-
-            if (player_x, player_y) in orange_w and not to:
-                player_y = prev_y
-
-            if (player_x, player_y) in blue_t:
-                tb = not tb
-
-            if (player_x, player_y) in orange_t:
-                to = not to
-            
-            if (player_x, player_y) in holes:
-                player_x, player_y = px_init, py_init;
-                tb, to = False;
 
     elif engine.key_down(engine.KEY_a):
         count += 1
         if count == 1:
             player_x -= 1
-            if (player_x, player_y) in walls:
-                player_x = prev_x
-
-            if (player_x, player_y) in blue_w and not tb:
-                player_x = prev_x
-
-            if (player_x, player_y) in orange_w and not to:
-                player_x = prev_x
-
-            if (player_x, player_y) in blue_t:
-                tb = not tb
-
-            if (player_x, player_y) in orange_t:
-                to = not to
-            
-            if (player_x, player_y) in holes:
-                player_x, player_y = px_init, py_init;
-                tb, to = False;
 
     elif engine.key_down(engine.KEY_s):
         count += 1
         if count == 1:
             player_y += 1
-            if (player_x, player_y) in walls:
-                player_y = prev_y
-
-            if (player_x, player_y) in blue_w and not tb:
-                player_y = prev_y
-
-            if (player_x, player_y) in orange_w and not to:
-                player_y = prev_y
-
-            if (player_x, player_y) in blue_t:
-                tb = not tb
-
-            if (player_x, player_y) in orange_t:
-                to = not to
-
-            if (player_x, player_y) in holes:
-                player_x, player_y = px_init, py_init;
-                tb, to = False;
 
     elif engine.key_down(engine.KEY_d):
         count += 1
         if count == 1:
             player_x += 1
-            if (player_x, player_y) in walls:
-                player_x = prev_x
-
-            if (player_x, player_y) in blue_w and not tb:
-                player_x = prev_x
-
-            if (player_x, player_y) in orange_w and not to:
-                player_x = prev_x
-
-            if (player_x, player_y) in blue_t:
-                tb = not tb
-
-            if (player_x, player_y) in orange_t:
-                to = not to
-            
-            if (player_x, player_y) in holes:
-                player_x, player_y = px_init, py_init;
-                tb, to = False, False;
 
     else:
         count = 0
+
+    if count == 1:
+        if (player_x, player_y) in walls:
+            player_y = prev_y
+
+        if (player_x, player_y) in blue_w and not tb:
+            player_y = prev_y
+
+        if (player_x, player_y) in orange_w and not to:
+            player_y = prev_y
+
+        if (player_x, player_y) in blue_t:
+            tb = not tb
+
+        if (player_x, player_y) in orange_t:
+            to = not to
+        
+        if (player_x, player_y) in holes:
+            player_x, player_y = px_init, py_init;
+            tb, to = False;
+
+        if (player_x, player_y) in checkpoints:
+            px_init, py_init = player_x, player_y
+            last_enabled_checkpoint = checkpoints.index((player_x, player_y))
 
     if player_x < 0:
         player_x = prev_x
@@ -186,6 +139,26 @@ def draw_all(window: winobj):
             tile_height
         )
 
+    for idx, checkpoint in enumerate(checkpoints):
+        if idx == last_enabled_checkpoint:
+            objects.draw_object(
+                window,
+                'Assets/Images/checkpoint_on.png',
+                checkpoint[0] * tile_width,
+                checkpoint[1] * tile_height,
+                tile_width,
+                tile_height
+            )
+        else:
+            objects.draw_object(
+                window,
+                'Assets/Images/checkpoint_off.png',
+                checkpoint[0] * tile_width,
+                checkpoint[1] * tile_height,
+                tile_width,
+                tile_height
+            )
+
     objects.draw_object(
         window,
         'Assets/Images/player.png',
@@ -208,6 +181,7 @@ blue_t, orange_t = [], []  # blue and orange triggers
 blue_w, orange_w = [], []  # blue and orange walls
 walls = []
 holes = []
+checkpoints = []; last_enabled_checkpoint = -1
 
 lvl_1 = engine.Window('Level 1', lvl_width * tile_width, lvl_height * tile_height)
 lvl_1.change_icon('Assets/Images/player.png')
@@ -233,6 +207,7 @@ blue_t, orange_t = [], []
 blue_w, orange_w = [], []
 holes = []
 walls = [(1, 1), (1, 2), (3, 0), (3, 1)]
+checkpoints = []; last_enabled_checkpoint = -1
 
 lvl_2 = engine.Window('Level 2', lvl_width * tile_width, lvl_height * tile_height)
 lvl_2.change_icon('Assets/Images/player.png')
@@ -258,6 +233,7 @@ blue_t, orange_t = [(4, 0)], []
 blue_w, orange_w = [(3, 1), (4, 1), (3, 2)], []
 holes = []
 walls = []
+checkpoints = []; last_enabled_checkpoint = -1
 
 lvl_3 = engine.Window('Level 3', lvl_width * tile_width, lvl_height * tile_height)
 lvl_3.change_icon('Assets/Images/player.png')
@@ -286,6 +262,8 @@ blue_t, orange_t = [(2, 5)], [(7, 0)]
 blue_w, orange_w = [(6, 0), (6, 1), (6, 2), (7, 2), (8, 2), (9, 2)], [(8, 0), (8, 1), (9, 1)]
 holes = [(5, 5)]
 walls = []
+checkpoints = [(4, 4)]
+last_enabled_checkpoint = -1 # Index of enabled checkpoint
 
 
 while lvl_4.running():
