@@ -1,4 +1,4 @@
-# WARNING: Please use the latest GitHub release of fusion-engine. It is highly likely that it won't work otherwise.
+WARNING: Please use the latest GitHub __stable__ release of fusion-engine. It is highly likely that it won't work otherwise.
 # Dot
 A game created with Fusion Engine.
 <details>
