@@ -9,22 +9,22 @@ type winobj = engine.Window
 def movement_check():
     global player_x, player_y, px_init, py_init, holes, tb, to, count, last_enabled_checkpoint
     prev_x, prev_y = player_x, player_y
-    if engine.key_down(engine.KEY_w) or engine.key_down(engine.KEY_UP):
+    if engine.Key.key_down(engine.KEY_w) or engine.Key.key_down(engine.KEY_UP):
         count += 1
         if count == 1:
             player_y -= 1
 
-    elif engine.key_down(engine.KEY_a) or engine.key_down(engine.KEY_LEFT):
+    elif engine.Key.key_down(engine.KEY_a) or engine.Key.key_down(engine.KEY_LEFT):
         count += 1
         if count == 1:
             player_x -= 1
 
-    elif engine.key_down(engine.KEY_s) or engine.key_down(engine.KEY_DOWN):
+    elif engine.Key.key_down(engine.KEY_s) or engine.Key.key_down(engine.Key.key_down):
         count += 1
         if count == 1:
             player_y += 1
 
-    elif engine.key_down(engine.KEY_d) or engine.key_down(engine.KEY_RIGHT):
+    elif engine.Key.key_down(engine.KEY_d) or engine.Key.key_down(engine.KEY_RIGHT):
         count += 1
         if count == 1:
             player_x += 1
