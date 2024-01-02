@@ -9,22 +9,22 @@ type winobj = engine.Window
 def movement_check():
     global player_x, player_y, px_init, py_init, holes, tb, to, count, last_enabled_checkpoint
     prev_x, prev_y = player_x, player_y
-    if engine.Key.key_down(engine.KEY_w) or engine.Key.key_down(engine.KEY_UP):
+    if engine.Key(engine.KEY_w).key_down() or engine.Key(engine.KEY_UP).key_down():
         count += 1
         if count == 1:
             player_y -= 1
 
-    elif engine.Key.key_down(engine.KEY_a) or engine.Key.key_down(engine.KEY_LEFT):
+    elif engine.Key(engine.KEY_a).key_down() or engine.Key(engine.KEY_LEFT).key_down():
         count += 1
         if count == 1:
             player_x -= 1
 
-    elif engine.Key.key_down(engine.KEY_s) or engine.Key.key_down(engine.Key.key_down):
+    elif engine.Key(engine.KEY_s).key_down() or engine.Key(engine.KEY_DOWN).key_down():
         count += 1
         if count == 1:
             player_y += 1
 
-    elif engine.Key.key_down(engine.KEY_d) or engine.Key.key_down(engine.KEY_RIGHT):
+    elif engine.Key(engine.KEY_d).key_down() or engine.Key(engine.KEY_RIGHT).key_down():
         count += 1
         if count == 1:
             player_x += 1
@@ -265,8 +265,32 @@ walls = []
 checkpoints = [(4, 4)]
 last_enabled_checkpoint = -1 # Index of enabled checkpoint
 
-
 while lvl_4.running():
+    movement_check()
+    draw_all(lvl_4)
+
+    if player_x == goal_x and player_y == goal_y:
+        break
+
+
+lvl_width, lvl_height = 10, 6
+tile_width, tile_height = 64, 64
+player_x, player_y = 0, 0
+px_init, py_init = player_x, player_y
+goal_x, goal_y = 6, 3
+
+lvl_5 = engine.Window('Level 5', lvl_width * tile_width, lvl_height * tile_height)
+lvl_5.change_icon('Assets/Images/player.png')
+lvl_5.toggle_quittable()
+tb, to = False, False
+blue_t, orange_t = [(9, 0)], []
+blue_w, orange_w = [(6, 2), (5, 2), (5, 3), (5, 4), (5, 5)], []
+holes = [(3, 3)]
+walls = [(7, 2), (7, 3), (7, 4), (7, 5), (6, 5)]
+checkpoints = [(3, 2), (6, 4)]
+last_enabled_checkpoint = -1
+
+while lvl_5.running():
     movement_check()
     draw_all(lvl_4)
 
